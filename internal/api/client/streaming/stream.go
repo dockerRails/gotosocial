@@ -31,6 +31,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
+	"golang.org/x/exp/slog"
 )
 
 // StreamGETHandler swagger:operation GET /api/v1/streaming streamGet
@@ -140,6 +141,8 @@ func (m *Module) StreamGETHandler(c *gin.Context) {
 		apiutil.ErrorHandler(c, gtserror.NewErrorBadRequest(err, err.Error()), m.processor.InstanceGet)
 		return
 	}
+
+	slog.Info("new stream request")
 
 	var token string
 
