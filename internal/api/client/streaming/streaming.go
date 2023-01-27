@@ -63,4 +63,5 @@ func New(processor processing.Processor, dTicker time.Duration, wsBuf int) *Modu
 
 func (m *Module) Route(attachHandler func(method string, path string, f ...gin.HandlerFunc) gin.IRoutes) {
 	attachHandler(http.MethodGet, BasePath, m.StreamGETHandler)
+	attachHandler(http.MethodGet, BasePath+"/", m.StreamGETHandler)
 }
